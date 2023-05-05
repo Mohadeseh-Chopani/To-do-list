@@ -36,9 +36,11 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
     }
 
     public class Tasks_viewHolder extends RecyclerView.ViewHolder{
+
         TextView title;
         CheckBox isselected;
         ImageView btn_edit,btn_delete;
+
         public Tasks_viewHolder(@NonNull View itemView) {
             super(itemView);
 

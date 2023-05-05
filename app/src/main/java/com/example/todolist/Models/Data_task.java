@@ -3,8 +3,13 @@ package com.example.todolist.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName ="task_db")
 public class Data_task implements Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     public int getId() {
