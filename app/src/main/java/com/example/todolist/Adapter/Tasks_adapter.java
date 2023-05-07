@@ -1,5 +1,6 @@
 package com.example.todolist.Adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,11 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
         notifyItemInserted(0);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void add_tasks(List<Data_task> tasks){
+        this.Tasks.addAll(tasks);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -35,7 +41,7 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
 
     @Override
     public void onBindViewHolder(@NonNull Tasks_viewHolder holder, int position) {
-
+       holder.getTask(Tasks.get(position));
     }
 
     @Override
@@ -58,5 +64,8 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
             btn_delete=itemView.findViewById(R.id.btn_delete);
         }
 
+        public void getTask(Data_task data_task){
+            title.setText(data_task.getTask_title());
+        }
     }
 }

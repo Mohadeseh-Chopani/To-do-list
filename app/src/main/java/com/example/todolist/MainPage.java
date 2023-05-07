@@ -13,7 +13,9 @@ import com.example.todolist.Database.Database_holder;
 import com.example.todolist.Models.Data_task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverDatabase{
+import java.util.List;
+
+public class MainPage extends AppCompatActivity implements ActionOverDatabase{
 
     RecyclerView recyclerView;
     FloatingActionButton btn_add;
@@ -36,6 +38,11 @@ public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverD
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         tasks_adapter=new Tasks_adapter();
         recyclerView.setAdapter(tasks_adapter);
+
+
+        List<Data_task> tasks=dataDao.getTaskList();
+        tasks_adapter.add_tasks(tasks);
+
 
         DialogAdd dialogAdd=new DialogAdd();
 

@@ -80,7 +80,4 @@ public class DialogAdd extends DialogFragment {
         });
         return  builder.create();
     }
-    interface ActionOverDatabase{
-        void addTaskFromDialog(Data_task data_task);
-    }
 }
