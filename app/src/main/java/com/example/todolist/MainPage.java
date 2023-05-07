@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainPage extends AppCompatActivity implements ActionOverDatabase{
+public class MainPage extends AppCompatActivity implements ActionOverDatabase,Tasks_adapter.TaskClickListener{
 
     RecyclerView recyclerView;
     FloatingActionButton btn_add;
@@ -30,13 +30,11 @@ public class MainPage extends AppCompatActivity implements ActionOverDatabase{
         recyclerView=findViewById(R.id.recyclerview);
 
 
-
         dataDao=Database_holder.getDatabase(this).getDataDao();
 
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-        tasks_adapter=new Tasks_adapter();
+        tasks_adapter=new Tasks_adapter(this);
         recyclerView.setAdapter(tasks_adapter);
 
 
@@ -60,6 +58,14 @@ public class MainPage extends AppCompatActivity implements ActionOverDatabase{
         if (result != 0) {
             data_task.setId((int) result);
             tasks_adapter.add(data_task);
+        }
+    }
+
+    @Override
+    public void removeTaskFromDialog(Data_task data_task) {
+        int result=dataDao.deleteTask(data_task);
+        if(result>0){
+            tasks_adapter.delete(data_task);
         }
     }
 }
