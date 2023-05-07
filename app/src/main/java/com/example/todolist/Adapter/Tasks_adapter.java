@@ -18,6 +18,14 @@ import java.util.List;
 
 public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_viewHolder> {
     List<Data_task>Tasks=new ArrayList<>();
+
+
+    public void add(Data_task task){
+        Tasks.add(task);
+        notifyItemInserted(0);
+    }
+
+
     @NonNull
     @Override
     public Tasks_viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

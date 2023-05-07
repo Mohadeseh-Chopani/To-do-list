@@ -9,10 +9,14 @@ import androidx.room.PrimaryKey;
 @Entity(tableName ="task_db")
 public class Data_task implements Parcelable {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    public Data_task(){
 
-    public int getId() {
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    public long getId() {
         return id;
     }
 
@@ -46,7 +50,7 @@ public class Data_task implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeLong(this.id);
         dest.writeString(this.task_title);
         dest.writeByte(this.is_selected ? (byte) 1 : (byte) 0);
     }
@@ -57,10 +61,7 @@ public class Data_task implements Parcelable {
         this.is_selected = source.readByte() != 0;
     }
 
-    public Data_task() {
-    }
-
-    protected Data_task(Parcel in) {
+    public Data_task(Parcel in) {
         this.id = in.readInt();
         this.task_title = in.readString();
         this.is_selected = in.readByte() != 0;

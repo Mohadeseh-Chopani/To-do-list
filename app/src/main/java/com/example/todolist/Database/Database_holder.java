@@ -17,7 +17,7 @@ public abstract class Database_holder extends RoomDatabase {
 
     private static Database_holder database_holder;
 
-    public Database_holder getDatabase(Context context){
+    public static Database_holder getDatabase(Context context){
         if(database_holder==null){
             database_holder= Room.databaseBuilder(context.getApplicationContext(),Database_holder.class,"task_db").
                     allowMainThreadQueries()
