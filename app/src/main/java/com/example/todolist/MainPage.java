@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainPage extends AppCompatActivity implements ActionOverDatabase,Tasks_adapter.TaskClickListener{
+public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverDatabase, DialogEdit.EditActionOverDatabase,Tasks_adapter.TaskClickListener{
 
     RecyclerView recyclerView;
     FloatingActionButton btn_add;
@@ -66,6 +66,23 @@ public class MainPage extends AppCompatActivity implements ActionOverDatabase,Ta
         int result=dataDao.deleteTask(data_task);
         if(result>0){
             tasks_adapter.delete(data_task);
+        }
+    }
+
+    @Override
+    public void editTask(Data_task data_task) {
+        DialogEdit dialogEdit=new DialogEdit();
+        Bundle bundle=new Bundle();
+        bundle.putParcelable("data",data_task);
+        dialogEdit.setArguments(bundle);
+        dialogEdit.show(getSupportFragmentManager(),null);
+    }
+
+    @Override
+    public void editTaskFromDialog(Data_task data_task) {
+        int result = dataDao.updateTask(data_task);
+        if (result > 0) {
+            tasks_adapter.update(data_task);
         }
     }
 }

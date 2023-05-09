@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Add"
+            android:text="@string/text_add"
             android:textColor="#ef9a9a"
             android:layout_marginEnd="20dp"
             android:textSize="18sp" />
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Cancel"
+            android:text="@string/text_cancel"
             android:textColor="#ef9a9a"
             android:textSize="18sp" />
     </LinearLayout>

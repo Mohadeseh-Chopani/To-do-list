@@ -7,61 +7,37 @@
     android:foreground="?attr/selectableItemBackground"
     android:layout_marginStart="13dp"
     android:layout_marginEnd="13dp"
-    android:layout_height="55dp"
+    android:layout_height="75dp"
     android:layout_marginTop="20dp">
 
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/text_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="task"
-        android:textColor="@color/black"
-        android:textSize="21sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/btn_edit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52"
-        app:srcCompat="@drawable/icon_edit"
-        app:tint="#888686"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/btn_delete"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
         app:srcCompat="@drawable/icon_delete"
         app:tint="#888686"
         tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:buttonTint="#ef9a9a"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todolist.ActionOverDatabase;
 import com.example.todolist.Models.Data_task;
 import com.example.todolist.R;
 
@@ -30,7 +28,7 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
     }
 
     public void add(Data_task task){
-        Tasks.add(task);
+        Tasks.add(0,task);
         notifyItemInserted(0);
     }
 
@@ -45,7 +43,17 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
             if(Tasks.get(i).getId()==task.getId()){
                 Tasks.remove(i);
                 notifyItemRemoved(i);
+                break;
             }
+        }
+    }
+
+    public void update(Data_task task){
+        for (int i = 0; i<Tasks.size() ; i++) {
+                if (Tasks.get(i).getId() == task.getId()) {
+                    Tasks.set(i, task);
+                    notifyItemChanged(i);
+                }
         }
     }
 
@@ -68,23 +76,21 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
 
     public class Tasks_viewHolder extends RecyclerView.ViewHolder{
 
-        TextView title;
         CheckBox isselected;
-        ImageView btn_edit,btn_delete;
+        ImageView btn_delete;
 
         public Tasks_viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title=itemView.findViewById(R.id.text_task);
             isselected=itemView.findViewById(R.id.checkbox);
-            btn_edit=itemView.findViewById(R.id.btn_edit);
             btn_delete=itemView.findViewById(R.id.btn_delete);
 
         }
 
         public void getTask(Data_task data_task){
-            title.setText(data_task.getTask_title());
 
+            isselected.setText(data_task.getTask_title());
+            isselected.setChecked(data_task.isIs_selected());
 
             btn_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,10 +109,20 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
                     dialog.show();
                 }
             });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    taskClickListener.editTask(data_task);
+                    return false;
+                }
+            });
         }
     }
 
     public interface TaskClickListener{
         void removeTaskFromDialog(Data_task data_task);
+        void editTask(Data_task data_task);
     }
 }
