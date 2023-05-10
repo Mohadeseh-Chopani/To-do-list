@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">لیست انجام کار</string>
+    <string name="search_hint">جستجو</string>
+    <string name="hint_input_task">وظیفه</string>
+    <string name="error_empty">باکس وظایف خالی است!!</string>
+    <string name="delete_task">آیا شما می خواهید حذف کنید این وظیفه را ؟</string>
+    <string name="text_add">اضافه</string>
+    <string name="text_edit">ویرایش</string>
+    <string name="text_cancel">بیخیال</string>
+</resources>
