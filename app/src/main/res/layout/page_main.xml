@@ -41,6 +41,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:id="@+id/btn_search"
                 app:srcCompat="@drawable/icon_search"
                 app:tint="#B8B6B6"
                 android:layout_marginTop="22dp"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,11 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
                     notifyItemChanged(i);
                 }
         }
+    }
+
+    public void search(List<Data_task> task){
+        Tasks=task;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -118,11 +124,22 @@ public class Tasks_adapter extends RecyclerView.Adapter<Tasks_adapter.Tasks_view
                     return false;
                 }
             });
+
+            isselected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                   if(isselected.isPressed()) {
+                       data_task.setIs_selected(isChecked);
+                       taskClickListener.is_complete(data_task);
+                   }
+                }
+            });
         }
     }
 
     public interface TaskClickListener{
         void removeTaskFromDialog(Data_task data_task);
         void editTask(Data_task data_task);
+        void is_complete(Data_task data_task);
     }
 }

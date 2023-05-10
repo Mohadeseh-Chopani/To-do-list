@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.todolist.Adapter.Tasks_adapter;
 import com.example.todolist.Database.DataDao;
@@ -19,8 +24,11 @@ public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverD
 
     RecyclerView recyclerView;
     FloatingActionButton btn_add;
+    EditText editText_search;
+    ImageView btn_search;
     Tasks_adapter tasks_adapter;
     DataDao dataDao;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +36,8 @@ public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverD
 
         btn_add=findViewById(R.id.btn_add);
         recyclerView=findViewById(R.id.recyclerview);
+        editText_search=findViewById(R.id.edit_search);
+        btn_search=findViewById(R.id.btn_search);
 
 
         dataDao=Database_holder.getDatabase(this).getDataDao();
@@ -41,6 +51,35 @@ public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverD
         List<Data_task> tasks=dataDao.getTaskList();
         tasks_adapter.add_tasks(tasks);
 
+
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText_search.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        if(s.length()>0){
+                            List<Data_task> tasks=dataDao.searchTask(s.toString());
+                            tasks_adapter.search(tasks);
+                        }else {
+                            List<Data_task> tasks = dataDao.getTaskList();
+                            tasks_adapter.search(tasks);
+                        }
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+            }
+        });
 
         DialogAdd dialogAdd=new DialogAdd();
 
@@ -76,6 +115,11 @@ public class MainPage extends AppCompatActivity implements DialogAdd.ActionOverD
         bundle.putParcelable("data",data_task);
         dialogEdit.setArguments(bundle);
         dialogEdit.show(getSupportFragmentManager(),null);
+    }
+
+    @Override
+    public void is_complete(Data_task data_task) {
+        dataDao.updateTask(data_task);
     }
 
     @Override
